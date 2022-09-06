@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "vk-scripts"
+version = "0.1.0"
+description = "Scripts for vk.com"
+authors = ["odhako"]
+readme = "README.md"
+packages = [{include = "vk_scripts"}]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+vk-api = "^11.9.9"
+Flask = "^2.2.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
