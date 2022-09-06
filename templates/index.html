@@ -3,18 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <title>ВК РЕПОСТЕР</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
     <main>
         <h1>ВК репостер 9000</h1>
         <section>
             <h2>Добавить группу или паблик для репоста:</h2>
-            <form action="add">
-                <input type="text">
-                <input type="submit">
+            <form action="/add" method="post">
+                <input type="text" name="group">
+                <input type="submit" value="Добавить">
             </form>
         </section>
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <section>
+                            {% for message in messages %}
+                                <p style="font-weight: bold">{{ message }}</p>
+                            {% endfor %}
+                    </section>
+                {% endif %}
+            {% endwith %}
+        {% if groups %}
+            <section>
+                <h2>Уже добавлены:</h2>
+                <ul>
+                    {% for group in groups %}
+                    <li>{{ group }}</li>
+                    {% endfor %}
+                </ul>
+            </section>
+        {% endif %}
     </main>
 </body>
 </html>
