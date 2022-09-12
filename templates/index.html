@@ -9,10 +9,10 @@
     <main>
         <h1>ВК репостер 9000</h1>
         <section>
-            <h2>Добавить группу или паблик для репоста:</h2>
+            <h2>Добавить группу или паблик:</h2>
             <form action="/add" method="post">
-                <input type="text" name="group">
-                <input type="submit" value="Добавить">
+                <input class="field" type="text" name="group">
+                <input class="button" type="submit" value="Добавить">
             </form>
         </section>
             {% with messages = get_flashed_messages() %}
@@ -37,3 +37,4 @@
     </main>
 </body>
 </html>
+<!--   -->

@@ -33,4 +33,3 @@ def add_group():
             return redirect('/')
         groups.write(group_url + '\n')
     return redirect('/')
-
