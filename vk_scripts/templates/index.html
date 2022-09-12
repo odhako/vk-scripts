@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ВК РЕПОСТЕР</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <main>
+        <h1>ВК репостер 9000</h1>
+        <section class="section-form">
+            <h2>Добавить группу или паблик:</h2>
+            <form class="form-add-group" action="/add" method="post">
+                {% csrf_token %}
+                {{ form }}
+                <button class="button">Добавить</button>
+            </form>
+        </section>
+
+        {% if messages %}
+        <section class="messages">
+                {% for message in messages %}
+                <p{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
+                {% endfor %}
+        </section>
+        {% endif %}
+
+        {% if groups %}
+            <section class="section-groups">
+                <h2>Уже добавлены:</h2>
+                <ul>
+                    {% for group in groups %}
+                    <li>{{ group }}</li>
+                    {% endfor %}
+                </ul>
+            </section>
+        {% endif %}
+    </main>
+</body>
+</html>

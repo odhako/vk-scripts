@@ -27,9 +27,8 @@ IS_HEROKU = "DYNO" in os.environ
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-@^0)#^0kxtr!_3j8(nhll@o+kc^h)=43%_^#e55ur@x-i1hgio'
 
-# SECURITY WARNING: don't run with debug turned on in production!
-
-SECRET_KEY = os.environ["SECRET_KEY"]
+if 'SECRET_KEY' in os.environ:
+    SECRET_KEY = os.environ["SECRET_KEY"]
 
 # Generally avoid wildcards(*). However since Heroku router provides hostname validation it is ok
 if IS_HEROKU:

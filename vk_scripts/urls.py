@@ -15,7 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+import vk_scripts.views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', vk_scripts.views.index),
+    path('add', vk_scripts.views.add_group)
 ]

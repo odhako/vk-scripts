@@ -8,8 +8,8 @@ app.secret_key = '_aeWaoPNeRsivNAiNHpQng'
 
 @app.route("/", methods=['GET'])
 def hello_world():
-    if os.path.exists('static/groups.txt'):
-        with open('static/groups.txt', 'r') as file:
+    if os.path.exists('../vk_scripts/static/groups.txt'):
+        with open('../vk_scripts/static/groups.txt', 'r') as file:
             groups = file.readlines()
         return render_template('index.html', groups=groups)
     else:
@@ -19,7 +19,7 @@ def hello_world():
 @app.route("/add", methods=['POST'])
 def add_group():
     form = request.form
-    with open('static/groups.txt', 'a') as groups:
+    with open('../vk_scripts/static/groups.txt', 'a') as groups:
         group_url = form['group']
         if group_url.endswith('vk.com') or group_url.endswith('vk.com/'):
             flash('Неправильный адрес')
