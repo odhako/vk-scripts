@@ -1,7 +1,11 @@
-MANAGE := poetry run python manage.py
-
 debug:
-	poetry run python manage.py runserver #  --noreload
+	poetry run python manage.py runserver
+
+test:
+	poetry run python manage.py test
+
+test-v:
+	poetry run python manage.py test -v 1
 
 req:
 	poetry export --without-hashes -f requirements.txt -o requirements.txt
@@ -12,8 +16,5 @@ wsgi:
 push:
 	git push heroku main
 
-migrate:
-	@$(MANAGE) migrate
-
 shell:
-	@$(MANAGE) shell_plus
+	poetry run python manage.py shell_plus
