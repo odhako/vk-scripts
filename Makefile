@@ -1,12 +1,7 @@
-test-run:
-	poetry run flask run
-
-flask:
-	gunicorn --workers=4 --bind=127.0.0.1:5000 app:app
-
+MANAGE := poetry run python manage.py
 
 debug:
-	poetry run python manage.py runserver
+	poetry run python manage.py runserver #  --noreload
 
 req:
 	poetry export --without-hashes -f requirements.txt -o requirements.txt
@@ -16,3 +11,9 @@ wsgi:
 
 push:
 	git push heroku main
+
+migrate:
+	@$(MANAGE) migrate
+
+shell:
+	@$(MANAGE) shell_plus

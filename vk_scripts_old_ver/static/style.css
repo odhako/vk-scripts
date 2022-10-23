@@ -24,6 +24,11 @@ h2 {
 
 ul {
     margin: 0;
+    list-style-type: none;
+}
+
+li {
+    margin: 5px;
 }
 
 section {
@@ -69,7 +74,7 @@ a {
     margin-right: 10px;
 }
 
-.form-add-group .button {
+.form-add-group .button-add {
     background-color: white;
     padding: 10px;
     border: 0;
@@ -79,6 +84,29 @@ a {
     width: 25%;
 }
 
-.form-add-group .button:active {
+ {
+    border-style: inset;
+}
+
+.groups-list * {
+    margin-bottom: 10px;
+}
+
+.groups-list .button-delete {
+    background-color: white;
+    padding: 10px;
+    border: 0;
+    border: 3px outset lightgray;
+    font-family: inherit;
+    font-size: 1em;
+}
+
+.group-line {
+    width: 100%;
+}
+
+
+.form-add-group .button:active,
+.groups-list .button-delete:active {
     border-style: inset;
 }

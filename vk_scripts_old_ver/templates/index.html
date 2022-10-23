@@ -12,8 +12,8 @@
             <h2>Добавить группу или паблик:</h2>
             <form class="form-add-group" action="/add" method="post">
                 {% csrf_token %}
-                {{ form }}
-                <button class="button">Добавить</button>
+                {{ add_group_form }}
+                <button class="button-add">Добавить</button>
             </form>
         </section>
 
@@ -28,11 +28,14 @@
         {% if groups %}
             <section class="section-groups">
                 <h2>Уже добавлены:</h2>
-                <ul>
-                    {% for group in groups %}
-                    <li>{{ group }}</li>
+                <form class="groups-list">
+                    {% for id, group in groups %}
+                    <div class="group-line">
+                        <input type="checkbox"> id {{ id }}: {{ group }}</input>
+                    </div>
                     {% endfor %}
-                </ul>
+                    <button class="button-delete">Удалить выбранные</button>
+                </form>
             </section>
         {% endif %}
     </main>
