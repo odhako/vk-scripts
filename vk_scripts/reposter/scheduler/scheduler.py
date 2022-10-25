@@ -30,11 +30,11 @@ def start():
     #                   name='clean_accounts',
     #                   jobstore='default')
 
-    scheduler.add_job(print_console,
-                      'interval',
-                      seconds=60,
-                      id='60_sec',
-                      replace_existing=True)
+    # scheduler.add_job(print_console,
+    #                   'interval',
+    #                   seconds=60,
+    #                   id='60_sec',
+    #                   replace_existing=True)
     scheduler.add_job(repost_test,
                       'cron',
                       hour="10,11,12,13,14,15,16,17,18,19,20,21,22",
