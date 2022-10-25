@@ -25,7 +25,10 @@ SECRET_KEY = 'django-insecure-kry2$d09i6(icvf(dy&u3&+52a8f4t3yg16r(6adq0gw*-$k9b
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    '127.0.0.1',
+    'localhost',
+]
 
 
 # Application definition
@@ -37,8 +40,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # 'vk_scripts',
-    # 'reposter',
+    'django_extensions',
+    'bootstrap4',
+    'django_apscheduler',
+    'vk_scripts',
+    'vk_scripts.reposter',
 ]
 
 MIDDLEWARE = [
@@ -87,29 +93,24 @@ DATABASES = {
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
+    # {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',},
+    {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+     'OPTIONS': {
+         'min_length': 3,
+     }},
+    # {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',},
+    # {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',},
 ]
 
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ru'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Moscow'
 
-USE_I18N = True
+USE_I18N = False
 
 USE_TZ = True
 
@@ -123,3 +124,16 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+SHELL_PLUS = "ipython"
+
+# print SQL queries in shell_plus
+SHELL_PLUS_PRINT_SQL = True
+
+BOOTSTRAP4 = {
+    "theme_url": '/static/reposter/starter-template.css'
+}
+
+# BOOTSTRAP4 = {
+#     "theme_url": 'https://getbootstrap.com/docs/4.5/examples/starter-template/starter-template.css'
+# }

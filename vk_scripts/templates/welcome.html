@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block header %}
+ВК репостер 9000
+{% endblock %}
+
+{% block content %}
+
+<form method="post" action="/add/" class="mb-3">
+    {% for error in form.non_field_errors %}
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="close">×</button>
+        {{ error }}
+      </div>
+    {% endfor %}
+    {% csrf_token %}
+    {% for field in add_group_form %}
+        <div class="form-group">
+            {{ field.errors }}
+            {{ field.label_tag }} {{ field }}
+            {% if field.help_text %}
+            <small class="form-text text-muted">{{ field.help_text|safe }}</small>
+            {% endif %}
+        </div>
+    {% endfor %}
+    <div class="form-group">
+        <input class="btn btn-primary" type="submit" value="Добавить группу">
+    </div>
+</form>
+{% if groups %}
+    <h3 class="mb-3">Уже добавлены</h3>
+    <table class="table table-striped">
+        {% for id, group, active in groups %}
+            <tr>
+                <td>{{ id }}</td>
+                <td>{{ group }}</td>
+                <td>
+                    <form action="/toggle/{{ id }}/" method="post">
+                        {% csrf_token %}
+                        {% if active == True %}
+                        <input class="btn btn-success" type="submit" value="Активно">
+                        {% else %}
+                        <input class="btn btn-secondary" type="submit" value="Неактивно">
+                        {% endif %}
+                    </form>
+                </td>
+                <td>
+                    <form action="/delete/{{ id }}/" method="post">
+                        {% csrf_token %}
+                        <input class="btn btn-danger" type="submit" value="Удалить">
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endif %}
+
+{% endblock %}

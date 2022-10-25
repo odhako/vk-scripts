@@ -32,7 +32,7 @@ def print_console():
 def start():
     scheduler = BackgroundScheduler()
     # scheduler.add_job(print, 'interval', seconds=10, args=[datetime.now()])
-    # scheduler.add_job(print_console, 'interval', seconds=10)
+    scheduler.add_job(print_console, 'interval', seconds=10)
     # scheduler.add_job(print, 'cron', hour=16, minute=46, args=['Post_going_here'])
     # scheduler.add_job(repost_test, 'cron', hour=9, minute=15)
     scheduler.start()

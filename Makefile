@@ -1,5 +1,5 @@
 debug:
-	poetry run python manage.py runserver
+	poetry run python manage.py runserver --noreload
 
 test:
 	poetry run python manage.py test
@@ -18,3 +18,11 @@ push:
 
 shell:
 	poetry run python manage.py shell_plus
+
+migrations:
+	poetry run python manage.py makemigrations
+	poetry run python manage.py migrate
+
+run:
+	export DJANGO_SETTINGS_MODULE=vk_scripts.settings
+	gunicorn vk_scripts.wsgi

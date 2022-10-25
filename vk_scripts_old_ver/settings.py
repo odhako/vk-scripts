@@ -62,7 +62,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_extensions',
     'vk_scripts',
-    'vk_scripts.reposter'
+    'vk_scripts.reposter',
 ]
 
 MIDDLEWARE = [
