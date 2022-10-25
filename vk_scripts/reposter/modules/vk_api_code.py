@@ -1,8 +1,10 @@
 import vk_api
 from .data import VkData
+from ..models import Group
+from random import choice, randint
 
 
-def get_screen_name_id(url):
+def get_id_and_type(url):
     session = vk_api.VkApi(token=VkData.TOKEN)
     vk = session.get_api()
 
@@ -11,6 +13,7 @@ def get_screen_name_id(url):
 
     output = vk.utils.resolveScreenName(screen_name=screen_name)
     print(output)
+    return output['object_id']
 
 
 def repost_test():
@@ -30,8 +33,25 @@ def repost_random():
     session = vk_api.VkApi(token=VkData.TOKEN)
     vk = session.get_api()
 
+    groups = Group.objects.filter(active=True)
+    random_group = choice(groups)
+    url = random_group.url
+    print(url)
+    screen_name = url.split("/")[-1]
+    print(screen_name)
+    post = vk.wall.get(domain=screen_name, count=1)
+    post_count = post['count']
+    print('Post count: ', post_count)
 
+    random_post = vk.wall.get(domain=screen_name,
+                              count=1,
+                              offset=randint(1, post_count))
 
+    post_id = random_post['items'][0]['id']
+    print('### Post id:', post_id)
 
-# if __name__ == '__main__':
-#     get_screen_name_id('https://vk.com/id2977889')
+    group_id = get_id_and_type(url)
+    repost_object = f'wall-{group_id}_{post_id}'
+
+    print('NEW')
+    print(vk.wall.repost(object=repost_object, group_id=VkData.API_TEST_ID))

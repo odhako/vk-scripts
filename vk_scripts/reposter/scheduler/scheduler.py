@@ -3,18 +3,11 @@ from django_apscheduler.jobstores import DjangoJobStore
 # from django.utils import timezone
 # from django_apscheduler.models import DjangoJobExecution
 import sys
-from ..modules.vk_api_code import repost_test
+from ..modules.vk_api_code import repost_random
 
 
 # This is the function you want to schedule - add as many
 # as you want and then register them in the start() function below
-# def deactivate_expired_accounts():
-#     today = timezone.now()
-#     ...
-#     # get accounts, expire them, etc.
-#     ...
-
-
 def print_console():
     print('60 seconds passed...')
 
@@ -35,10 +28,10 @@ def start():
     #                   seconds=60,
     #                   id='60_sec',
     #                   replace_existing=True)
-    scheduler.add_job(repost_test,
+    scheduler.add_job(repost_random,
                       'cron',
-                      hour="10,11,12,13,14,15,16,17,18,19,20,21,22",
-                      id='1_hour_repost',
+                      hour="10,21",
+                      id='hour_repost',
                       replace_existing=True,
                       misfire_grace_time=7200,
                       jitter=120)
