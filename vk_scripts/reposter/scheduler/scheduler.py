@@ -4,6 +4,7 @@ from django_apscheduler.jobstores import DjangoJobStore
 # from django_apscheduler.models import DjangoJobExecution
 import sys
 from ..modules.vk_api_code import repost_test
+from django.db.utils import ProgrammingError
 
 
 # This is the function you want to schedule - add as many
@@ -41,5 +42,9 @@ def start():
                       id='1_hour_repost',
                       replace_existing=True,
                       misfire_grace_time=7200)
-    scheduler.start()
+    try:
+        scheduler.start()
+    except ProgrammingError():
+        return
+
     print("Scheduler started...", file=sys.stdout)
