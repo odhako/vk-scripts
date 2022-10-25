@@ -15,7 +15,9 @@ def index(request):
     print(request.user.is_authenticated)
     if not request.user.is_authenticated:
         return redirect('/login/')
-    groups = [(group.id, group.url, group.active) for group in Group.objects.all()]
+    groups = [(group.id, group.url, group.active)
+              for group
+              in Group.objects.all().order_by('id')]
     state_running = STATE_RUNNING
     print('State: ', state_running)
     return render(
