@@ -27,7 +27,7 @@ load_dotenv()
 SECRET_KEY = os.environ["SECRET_KEY"]
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 # ALLOWED_HOSTS = [
 #     '127.0.0.1',
@@ -35,7 +35,7 @@ DEBUG = False
 # ]
 
 ALLOWED_HOSTS = [
-    'vk-scripts-production.up.railway.app',
+    '.railway.app',
     '127.0.0.1',
 ]
 
