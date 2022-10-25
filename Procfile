@@ -1,1 +1,1 @@
-web: python manage.py migrate && gunicorn vk_scripts.wsgi
+web: python manage.py collectstatic && python manage.py migrate && gunicorn vk_scripts.wsgi
