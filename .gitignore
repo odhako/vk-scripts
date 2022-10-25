@@ -11,4 +11,3 @@ poetry.lock
 db.sqlite3
 .env
 staticfiles/
-

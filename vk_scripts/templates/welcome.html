@@ -27,6 +27,18 @@
         <input class="btn btn-primary" type="submit" value="Добавить группу">
     </div>
 </form>
+<form action="/scheduler/toggle/" class="mb-3" method="post">
+    {% csrf_token %}
+    {% if state_running == 1 %}
+        <div class="form-group">
+            <input class="btn btn-primary" type="submit" value="Выключить все">
+        </div>
+    {% else %}
+        <div class="form-group">
+            <input class="btn btn-secondary" type="submit" value="Включить все">
+        </div>
+    {% endif %}
+</form>
 {% if groups %}
     <h3 class="mb-3">Уже добавлены</h3>
     <table class="table table-striped">

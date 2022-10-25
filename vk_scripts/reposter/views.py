@@ -7,6 +7,7 @@ from .models import Group
 from django.views.decorators.http import require_http_methods
 from django.shortcuts import render, redirect
 from django.db.utils import IntegrityError
+from apscheduler.schedulers.base import STATE_RUNNING
 
 
 @require_http_methods(["GET"])
@@ -15,12 +16,15 @@ def index(request):
     if not request.user.is_authenticated:
         return redirect('/login/')
     groups = [(group.id, group.url, group.active) for group in Group.objects.all()]
+    state_running = STATE_RUNNING
+    print('State: ', state_running)
     return render(
         request,
         'welcome.html',
         context={
             "groups": groups,
-            'add_group_form': AddGroup
+            'add_group_form': AddGroup,
+            'state_running': state_running,
         }
     )
 
@@ -74,6 +78,17 @@ def toggle(request, pk):
         group.active = True
     group.save()
     print(group.url)
+    return redirect('/')
+
+
+@require_http_methods(["POST"])
+def toggle_scheduler(request):
+    # from apscheduler.schedulers.background import BackgroundScheduler
+    # scheduler = BackgroundScheduler()
+    # if STATE_RUNNING:
+    #     scheduler.shutdown()
+    # else:
+    #     scheduler.start()
     return redirect('/')
 
 
