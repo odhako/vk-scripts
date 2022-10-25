@@ -9,3 +9,4 @@ dist/
 *.log
 poetry.lock
 db.sqlite3
+.env

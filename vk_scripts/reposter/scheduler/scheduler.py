@@ -30,11 +30,16 @@ def start():
     #                   name='clean_accounts',
     #                   jobstore='default')
 
-    scheduler.remove_all_jobs()
-    scheduler.add_job(print_console, 'interval', seconds=60, id='60_sec')
+    scheduler.add_job(print_console,
+                      'interval',
+                      seconds=60,
+                      id='60_sec',
+                      replace_existing=True)
     scheduler.add_job(repost_test,
                       'cron',
                       hour="10,11,12,13,14,15,16,17,18,19,20,21,22",
-                      id='1_hour_repost')
+                      id='1_hour_repost',
+                      replace_existing=True,
+                      misfire_grace_time=7200)
     scheduler.start()
     print("Scheduler started...", file=sys.stdout)
