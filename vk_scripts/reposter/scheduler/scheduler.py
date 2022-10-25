@@ -40,6 +40,7 @@ def start():
                       hour="10,11,12,13,14,15,16,17,18,19,20,21,22",
                       id='1_hour_repost',
                       replace_existing=True,
-                      misfire_grace_time=7200)
+                      misfire_grace_time=7200,
+                      jitter=120)
     scheduler.start()
     print("Scheduler started...", file=sys.stdout)
