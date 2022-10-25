@@ -85,15 +85,15 @@ def toggle(request, pk):
     return redirect('/')
 
 
-@require_http_methods(["POST"])
-def toggle_scheduler(request):
-    # from apscheduler.schedulers.background import BackgroundScheduler
-    # scheduler = BackgroundScheduler()
-    # if STATE_RUNNING:
-    #     scheduler.shutdown()
-    # else:
-    #     scheduler.start()
-    return redirect('/')
+# @require_http_methods(["POST"])
+# def toggle_scheduler(request):
+#     from apscheduler.schedulers.background import BackgroundScheduler
+#     scheduler = BackgroundScheduler()
+#     if STATE_RUNNING:
+#         scheduler.shutdown()
+#     else:
+#         scheduler.start()
+#     return redirect('/')
 
 
 class Login(SuccessMessageMixin, LoginView):
