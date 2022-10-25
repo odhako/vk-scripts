@@ -11,7 +11,7 @@ req:
 	poetry export --without-hashes -f requirements.txt -o requirements.txt
 
 wsgi:
-	poetry run gunicorn task_manager.wsgi
+	poetry run gunicorn vk_scripts.wsgi
 
 push:
 	git push heroku main
@@ -24,5 +24,12 @@ migrations:
 	poetry run python manage.py migrate
 
 run:
+	export DJANGO_SETTINGS_MODULE=vk_scripts.settings
+	gunicorn vk_scripts.wsgi
+
+deploy:
+	python manage.py collectstatic
+	python manage.py makemigrations
+	python manage.py migrate
 	export DJANGO_SETTINGS_MODULE=vk_scripts.settings
 	gunicorn vk_scripts.wsgi
