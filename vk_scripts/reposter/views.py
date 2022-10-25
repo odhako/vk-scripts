@@ -48,6 +48,8 @@ def add_group(request):
     else:
         messages.error(request, 'Неправильный адрес!')
         return redirect('/')
+    if group_url.endswith('/'):
+        group_url = group_url[:-1]
     try:
         group = Group()
         group.url = group_url
