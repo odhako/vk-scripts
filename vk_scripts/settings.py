@@ -48,7 +48,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_extensions',
     'bootstrap4',
-    # 'django_apscheduler',
+    'django_apscheduler',
     'vk_scripts',
     'vk_scripts.reposter',
 ]
