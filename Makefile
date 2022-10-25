@@ -28,7 +28,7 @@ run:
 	gunicorn vk_scripts.wsgi
 
 deploy:
-	python manage.py collectstatic
+	#python manage.py collectstatic
 	python manage.py makemigrations
 	python manage.py migrate
 	export DJANGO_SETTINGS_MODULE=vk_scripts.settings
