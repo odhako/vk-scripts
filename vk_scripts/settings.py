@@ -35,7 +35,7 @@ DEBUG = False
 # ]
 
 ALLOWED_HOSTS = [
-    'https://vk-scripts-production.up.railway.app',
+    'vk-scripts-production.up.railway.app',
     '127.0.0.1',
 ]
 
