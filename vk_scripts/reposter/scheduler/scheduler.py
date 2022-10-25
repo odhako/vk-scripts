@@ -44,7 +44,7 @@ def start():
                       misfire_grace_time=7200)
     try:
         scheduler.start()
-    except ProgrammingError():
+    except Exception():
         return
 
     print("Scheduler started...", file=sys.stdout)
