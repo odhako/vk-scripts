@@ -34,6 +34,8 @@ def repost_random():
     vk = session.get_api()
 
     groups = Group.objects.filter(active=True)
+    if not groups:
+        return
     random_group = choice(groups)
     url = random_group.url
     print(url)
@@ -62,6 +64,8 @@ def get_random_post():
     vk = session.get_api()
 
     groups = Group.objects.filter(active=True)
+    if not groups:
+        return '/'
     random_group = choice(groups)
     url = random_group.url
     print(url)
