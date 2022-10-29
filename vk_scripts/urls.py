@@ -26,4 +26,5 @@ urlpatterns = [
     path('toggle/<int:pk>/', views.toggle),
     path('delete/<int:pk>/', views.DeleteGroup.as_view()),
     # path('scheduler/toggle/', views.toggle_scheduler),
+    path('randompost/', views.random_post)
 ]

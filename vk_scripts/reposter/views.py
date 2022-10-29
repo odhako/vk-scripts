@@ -8,6 +8,7 @@ from django.views.decorators.http import require_http_methods
 from django.shortcuts import render, redirect
 from django.db.utils import IntegrityError
 from apscheduler.schedulers.base import STATE_RUNNING
+from .modules.vk_api_code import get_random_post
 
 
 @require_http_methods(["GET"])
@@ -85,15 +86,9 @@ def toggle(request, pk):
     return redirect('/')
 
 
-# @require_http_methods(["POST"])
-# def toggle_scheduler(request):
-#     from apscheduler.schedulers.background import BackgroundScheduler
-#     scheduler = BackgroundScheduler()
-#     if STATE_RUNNING:
-#         scheduler.shutdown()
-#     else:
-#         scheduler.start()
-#     return redirect('/')
+def random_post(request):
+    post = get_random_post()
+    return redirect(post)
 
 
 class Login(SuccessMessageMixin, LoginView):
