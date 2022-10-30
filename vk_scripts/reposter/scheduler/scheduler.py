@@ -30,7 +30,7 @@ def start():
     #                   replace_existing=True)
     scheduler.add_job(repost_random,
                       'cron',
-                      hour="10,21",
+                      hour="10,15,21",
                       id='hour_repost',
                       replace_existing=True,
                       misfire_grace_time=7200,
