@@ -1,5 +1,5 @@
 debug:
-	poetry run python manage.py runserver --noreload
+	poetry run python manage.py runserver
 
 test:
 	poetry run python manage.py test
