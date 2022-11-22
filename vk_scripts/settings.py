@@ -27,12 +27,7 @@ load_dotenv()
 SECRET_KEY = os.environ["SECRET_KEY"]
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
-
-# ALLOWED_HOSTS = [
-#     '127.0.0.1',
-#     'localhost',
-# ]
+DEBUG = True
 
 ALLOWED_HOSTS = [
     '.railway.app',
@@ -53,7 +48,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_extensions',
     'bootstrap4',
-    'django_apscheduler',
+    'django_celery_beat',
     'vk_scripts',
     'vk_scripts.reposter',
 ]
@@ -105,7 +100,7 @@ DATABASES = {
 if "DATABASE_URL" in os.environ:
     # Configure Django for DATABASE_URL environment variable.
     DATABASES["default"] = dj_database_url.config(
-        conn_max_age=MAX_CONN_AGE, ssl_require=True)
+        conn_max_age=MAX_CONN_AGE, ssl_require=False)
 
     # Enable test database if found in CI environment.
     if "CI" in os.environ:
@@ -161,7 +156,3 @@ SHELL_PLUS_PRINT_SQL = True
 BOOTSTRAP4 = {
     "theme_url": '/static/reposter/starter-template.css'
 }
-
-# BOOTSTRAP4 = {
-#     "theme_url": 'https://getbootstrap.com/docs/4.5/examples/starter-template/starter-template.css'
-# }
