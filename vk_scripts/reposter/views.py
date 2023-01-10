@@ -1,33 +1,30 @@
 from django.contrib.auth.views import LoginView, LogoutView
-from django.views.generic.edit import DeleteView
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
+from django.views.generic.edit import DeleteView, CreateView
+from django.views.generic import ListView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib import messages
-from .forms import UserLoginForm, AddGroup
-from .models import Group
+from .forms import UserLoginForm, AddGroup, AddSchedule
+from .models import Group, CrontabHours
 from django.views.decorators.http import require_http_methods
 from django.shortcuts import render, redirect
 from django.db.utils import IntegrityError
-from apscheduler.schedulers.base import STATE_RUNNING
 from .modules.vk_api_code import get_random_post
 
 
+@login_required()
 @require_http_methods(["GET"])
 def index(request):
-    print(request.user.is_authenticated)
-    if not request.user.is_authenticated:
-        return redirect('/login/')
     groups = [(group.id, group.url, group.active)
               for group
               in Group.objects.all().order_by('id')]
-    state_running = STATE_RUNNING
-    print('State: ', state_running)
     return render(
         request,
         'welcome.html',
         context={
             "groups": groups,
             'add_group_form': AddGroup,
-            'state_running': state_running,
         }
     )
 
@@ -64,7 +61,7 @@ def add_group(request):
     return redirect('/')
 
 
-class DeleteGroup(SuccessMessageMixin, DeleteView):
+class DeleteGroup(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
     model = Group
     template_name = ''
     success_url = '/'
@@ -105,3 +102,27 @@ class Login(SuccessMessageMixin, LoginView):
 
 class Logout(LogoutView):
     next_page = '/'
+
+
+class ScheduleView(LoginRequiredMixin, CreateView):
+    template_name = 'schedule.html'
+    model = CrontabHours
+    form_class = AddSchedule
+    success_url = '/schedule/'
+
+    extra_context = {
+        'hours': CrontabHours.objects.all()
+    }
+
+    def get(self, *args, **kwargs):
+        print(self.get_context_data())
+        return super().get(*args, **kwargs)
+
+
+# @require_http_methods(["POST"])
+# def change_job(request):
+#     form = request.POST
+#     job = DjangoJob.objects.all()[0]
+#     print('Job: ', job.__dict__)
+#
+#     return redirect('/schedule/')

@@ -1,4 +1,5 @@
 from django.db import models
+from django_celery_beat.models import CrontabSchedule, cronexp
 
 
 class Group(models.Model):
@@ -9,6 +10,6 @@ class Group(models.Model):
     active = models.BooleanField(default=True)
 
 
-# class Post(models.Model):
-#     group_id = models.ForeignKey(Group, on_delete=models.CASCADE)
-#     used = models.BooleanField(default=False)
+class CrontabHours(CrontabSchedule):
+    def __str__(self):
+        return f'{cronexp(self.hour)}:00 - {str(self.timezone)}'

@@ -1,5 +1,6 @@
+# TODO: Change token
+
 import vk_api
-from .data import VkData
 from ..models import Group
 from random import choice, randint
 

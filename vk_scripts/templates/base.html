@@ -27,21 +27,21 @@
         </li>
         {% if user.is_authenticated %}
         <li class="nav-item">
-          <a href="/randompost/" class="nav-link">Случайный пост</a>
+          <a href="/schedule/" class="nav-link">Расписание</a>
         </li>
         <li class="nav-item">
-          <a href="/schedule/" class="nav-link">Расписание</a>
+          <a href="/randompost/" class="nav-link">Случайный пост</a>
         </li>
         {% endif %}
       </ul>
       <ul class="navbar-nav">
         {% if user.is_authenticated %}
         <li class="nav-item">
-          <a href="/logout/" class="nav-link">Выйти</a>
+          <a href="/accounts/logout/" class="nav-link">Выйти</a>
         </li>
         {% else %}
         <li class="nav-item">
-          <a href="/login/" class="nav-link">Войти</a>
+          <a href="/accounts/login/" class="nav-link">Войти</a>
         </li>
         {% endif %}
       </ul>

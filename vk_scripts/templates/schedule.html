@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+
+{% block header %}
+Расписание
+{% endblock %}
+
+{% block content %}
+
+<form method="post" class="form">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    {% buttons %}
+    <input class="btn btn-primary" type="submit" value="Добавить">
+    {% endbuttons %}
+</form>
+
+<table class="table table-striped">
+    {% for hour in hours %}
+        <tr>
+            <td>{{ hour }}</td>
+        </tr>
+    {% endfor %}
+</table>
+
+
+
+{% endblock %}
