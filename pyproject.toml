@@ -5,7 +5,7 @@ description = "Scripts for vk.com"
 authors = ["odhako"]
 readme = "README.md"
 packages = [
-#    {include = "vk_scripts"},
+    {include = "vk_scripts"},
 ]
 
 [tool.poetry.dependencies]
