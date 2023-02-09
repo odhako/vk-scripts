@@ -4,7 +4,9 @@ version = "0.1.1"
 description = "Scripts for vk.com"
 authors = ["odhako"]
 readme = "README.md"
-packages = [{include = "vk_scripts"}]
+packages = [
+#    {include = "vk_scripts"},
+]
 
 [tool.poetry.dependencies]
 python = "^3.8"
